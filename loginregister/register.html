@@ -318,7 +318,7 @@
         if (res.ok) {
           alert("Registrasi berhasil! Login otomatis...");
 
-          const loginRes = await fetch('https://scholaria-backend.onrender.com/login", {
+          const loginRes = await fetch("https://scholaria-backend.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
