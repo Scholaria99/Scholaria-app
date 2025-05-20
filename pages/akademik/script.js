@@ -99,7 +99,7 @@ document.getElementById('jadwalForm').addEventListener('submit', async function(
   async function fetchJadwal() {
   try {
     const userId = localStorage.getItem("userId");
-    const res = await fetch(`http://localhost:3001/list-jadwal?userId=${userId}`);
+    const res = await fetch(`https://scholaria-backend.onrender.com/list-jadwal?userId=${userId}`);
     const data = await res.json();
     const tbody = document.getElementById('tabelJadwal').querySelector("tbody");
     const tabel = document.getElementById('tabelJadwal');
