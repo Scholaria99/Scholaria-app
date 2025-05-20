@@ -315,25 +315,24 @@
 
         const data = await res.json();
 
-        if (res.ok) {
-          alert("Registrasi berhasil! Login otomatis...");
+     if (res.ok) {
+  alert("Registrasi berhasil! Login otomatis...");
 
-          const loginRes = await fetch("https://scholaria-backend.onrender.com/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-          }
-          
-        );window.location.href = "verify.html";
-        
-          const loginData = await loginRes.json();
+  const loginRes = await fetch("https://scholaria-backend.onrender.com/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password })
+  });
 
-          if (loginRes.ok) {
-            localStorage.setItem("userId", loginData.userId);
-            localStorage.setItem("username", loginData.username);
-          } else {
-            alert("Gagal login otomatis: " + loginData.error);
-          }
+  const loginData = await loginRes.json();
+
+  if (loginRes.ok) {
+    localStorage.setItem("userId", loginData.userId);
+    localStorage.setItem("username", loginData.username);
+    window.location.href = "verify.html"; // ✅ pindah halaman setelah sukses login
+  } else {
+    alert("Gagal login otomatis: " + loginData.error);
+  }
         } else {
           alert("Gagal registrasi: " + data.error);
         }
