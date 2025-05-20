@@ -4,7 +4,7 @@ async function syncAwalKuis() {
   if (!userId) return;
 
   try {
-    const res = await fetch('https://scholaria-backend.onrender.com/awal-kuis?userId=${userId}`);
+    const res = await fetch(`https://scholaria-backend.onrender.com/awal-kuis?userId=${userId}`);
     const data = await res.json();
     if (data.awal_kuis) {
       localStorage.setItem("awalKuis", new Date(data.awal_kuis).toISOString());
