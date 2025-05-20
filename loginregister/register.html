@@ -328,13 +328,14 @@
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })
   });
+   window.location.href = "verify.html"; // ✅ pindah halaman setelah sukses login
 
   const loginData = await loginRes.json();
 
   if (loginRes.ok) {
     localStorage.setItem("userId", loginData.userId);
     localStorage.setItem("username", loginData.username);
-    window.location.href = "verify.html"; // ✅ pindah halaman setelah sukses login
+   
   } else {
     alert("Gagal login otomatis: " + loginData.error);
   }
