@@ -3,7 +3,7 @@ async function syncAwalKuis() {
   if (!userId) return;
 
   try {
-    const res = await fetch('https://scholaria-backend.onrender.com/awal-kuis?userId=${userId}`);
+    const res = await fetch(`https://scholaria-backend.onrender.com/awal-kuis?userId=${userId}`);
     const data = await res.json();
     if (data.awal_kuis) {
       localStorage.setItem("awalKuis", new Date(data.awal_kuis).toISOString());
@@ -48,7 +48,7 @@ document.getElementById('jadwalForm').addEventListener('submit', async function(
   };
 
   // 🔍 Validasi bentrok jadwal
-  const existing = await fetch('https://scholaria-backend.onrender.com/list-jadwal?userId=${data.userId}`);
+  const existing = await fetch(`https://scholaria-backend.onrender.com/list-jadwal?userId=${data.userId}`);
   const jadwalList = await existing.json();
 
   const bentrok = jadwalList.some(j => 
@@ -193,7 +193,7 @@ function toggleEditRow(button, id) {
 async function hapusJadwal(id) {
   if (!confirm("Yakin ingin menghapus jadwal ini?")) return;
   try {
-    const res = await fetch('https://scholaria-backend.onrender.com/hapus-jadwal/${id}`, {
+    const res = await fetch(`https://scholaria-backend.onrender.com/hapus-jadwal/${id}`, {
       method: "DELETE"
     });
     const result = await res.json();
@@ -213,7 +213,7 @@ async function sudahKerjakanQuiz(matkul) {
   const mingguKe = Math.floor((new Date() - awalTimestamp) / (1000 * 60 * 60 * 24 * 7)) + 1;
 
   try {
-    const res = await fetch('https://scholaria-backend.onrender.com/statistik-mingguan?userId=${userId}`);
+    const res = await fetch(`https://scholaria-backend.onrender.com/statistik-mingguan?userId=${userId}`);
     const data = await res.json();
     return data.some(item => item.minggu_ke == mingguKe && item.matkul.toLowerCase() === matkul.toLowerCase());
   } catch (err) {
@@ -230,7 +230,7 @@ async function tampilkanQuizHariIni() {
   // Set awal kuis jika belum ada (sinkron dengan quiz.html)
 
   const userId = localStorage.getItem("userId");
-  const res = await fetch('https://scholaria-backend.onrender.com/jadwal-hari-ini?userId=${userId}`);
+  const res = await fetch(`https://scholaria-backend.onrender.com/jadwal-hari-ini?userId=${userId}`);
   const jadwalHariIni = await res.json();
   const quizForm = document.getElementById('quizFormContainer');
   quizForm.innerHTML = ''; // Reset form
