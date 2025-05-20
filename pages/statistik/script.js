@@ -3,13 +3,13 @@ let chart;
 
 async function fetchStatistikMingguan() {
   const userId = localStorage.getItem("userId");
-  const res = await fetch(`http://localhost:3001/statistik-mingguan?userId=${userId}`);
+  const res = await fetch('https://scholaria-backend.onrender.com/statistik-mingguan?userId=${userId}`);
   return await res.json();
 }
 
 async function fetchSaranPerMatkul(matkul) {
   const userId = localStorage.getItem("userId");
-  const res = await fetch(`http://localhost:3001/saran-terakhir?matkul=${encodeURIComponent(matkul)}&userId=${userId}`);
+  const res = await fetch('https://scholaria-backend.onrender.com/saran-terakhir?matkul=${encodeURIComponent(matkul)}&userId=${userId}`);
   return await res.json();
 }
 
@@ -101,14 +101,14 @@ function renderBulanHistoryChart(records, bulan) {
 
 async function getCurrentBulan() {
   const userId = localStorage.getItem("userId");
-  const res = await fetch(`http://localhost:3001/bulan-terbaru?userId=${userId}`);
+  const res = await fetch('https://scholaria-backend.onrender.com/bulan-terbaru?userId=${userId}`);
   const data = await res.json();
   return data.bulan_terbaru || 1;
 }
 
 async function fetchAwalKuisFromDB() {
   const userId = localStorage.getItem("userId");
-  const res = await fetch(`http://localhost:3001/awal-kuis?userId=${userId}`);
+  const res = await fetch('https://scholaria-backend.onrender.com/awal-kuis?userId=${userId}`);
   const data = await res.json();
   return new Date(data.awal_kuis);
 }
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById("historyBtn").addEventListener("click", async () => {
     const userId = localStorage.getItem("userId");
-    const res = await fetch(`http://localhost:3001/history-bulanan?userId=${userId}`);
+    const res = await fetch('https://scholaria-backend.onrender.com/history-bulanan?userId=${userId}`);
     const data = await res.json();
 
     const groupedByBulan = {};
@@ -296,7 +296,7 @@ async function hapusNilai(matkul, mingguKe) {
   if (!confirm(`Yakin ingin menghapus nilai untuk ${matkul} di Minggu ${mingguKe}?`)) return;
 
   try {
-    const res = await fetch(`http://localhost:3001/hapus-nilai?userId=${userId}&matkul=${encodeURIComponent(matkul)}&minggu_ke=${mingguKe}`, {
+    const res = await fetch('https://scholaria-backend.onrender.com/hapus-nilai?userId=${userId}&matkul=${encodeURIComponent(matkul)}&minggu_ke=${mingguKe}`, {
       method: 'DELETE'
     });
     const data = await res.json();
