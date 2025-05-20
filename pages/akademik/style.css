@@ -1,0 +1,423 @@
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+ body {
+  background: #f9f9fb;
+  color: #333;
+  padding: 100px 20px 20px; /* top 100px agar konten tidak tertutup navbar */
+  animation: fadeInBody 0.6s ease;
+}
+
+
+
+  @keyframes fadeInBody {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+ .navbar {
+  background: #1e1e2f;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navbar button {
+  margin-left: 10px;
+}
+
+#navbarUsername {
+  color: #ccc;
+  margin-right: 15px;
+}
+
+.navbar-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar a,
+.navbar button {
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.navbar a:hover,
+.navbar button:hover {
+  color: #0dcaf0;
+  transform: scale(1.05);
+  border-radius: 6px;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar-menu {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: #2a2a3d;
+    border-radius: 8px;
+    padding: 10px 0;
+  }
+
+  .navbar-menu a,
+  .navbar-menu button,
+  #navbarUsername {
+    margin: 10px 20px;
+    display: block;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-menu.show {
+    display: flex;
+  }
+}
+
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu {
+  /* Hapus display:none */
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  visibility: hidden; /* sembunyikan dari view tapi tetap di DOM */
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+
+
+
+.dropdown-menu button {
+  background-color: #ff5e57;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.dropdown-menu button:hover {
+  background-color: #e04e4e;
+}
+
+
+  @keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+
+  button {
+    background-color: #0dcaf0;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background-color: #0d6efd;
+    transform: scale(1.05);
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  h1, h2 {
+    margin-bottom: 10px;
+    color: #222;
+  }
+
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    max-width: 500px;
+    animation: fadeInUp 0.5s ease;
+  }
+
+ .akademik-header {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* ✅ Ini yang memusatkan seluruh blok */
+  gap: 16px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease;
+}
+
+
+.akademik-header i {
+  color: #0dcaf0;
+}
+
+
+.tombol-jadwal-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.intro-text {
+  margin-top: 4px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.akademik-image {
+  width: 100%;
+  max-width: 280px;
+  display: block;
+  margin: 0 auto 30px;
+  animation: fadeInUp 0.8s ease;
+}
+
+  form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  form input[type="text"],
+  form input[type="time"],
+  form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+  }
+
+  form input:focus,
+  form select:focus {
+    border-color: #00d1b2;
+    outline: none;
+  }
+
+  #response {
+    margin-top: 15px;
+    color: #009879;
+    font-weight: bold;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+
+  table thead {
+    background-color: #00d1b2;
+    color: white;
+  }
+
+  table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+
+  table tbody tr {
+    animation: fadeInRow 0.4s ease;
+  }
+
+  @keyframes fadeInRow {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+
+  table tbody tr:hover {
+    background-color: #e8f8f5;
+  }
+
+  #quizFormContainer > div {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #00d1b2;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+    animation: fadeInUp 0.5s ease;
+  }
+
+  #quizFormContainer > div:hover {
+    transform: translateY(-3px);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+  }
+  
+  .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  animation: fadeInBody 0.3s ease;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 10px;
+  max-width: 360px;       /* ✅ Lebih kecil dari sebelumnya */
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: fadeInUp 0.4s ease;
+}
+
+/* Tombol aksi disembunyikan dulu */
+table tbody td .action-buttons {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  display: flex;
+  gap: 6px;
+}
+
+/* Muncul saat baris dihover */
+table tbody tr:hover td .action-buttons {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Opsional: gaya tambahan tombol */
+.tombol-aksi {
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tombol-aksi:hover {
+  background-color: #e0a800;
+}
+
+/* Tombol edit & hapus dalam kolom mata kuliah */
+.action-buttons-inline {
+  display: inline-flex;
+  gap: 8px;
+  margin-left: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+/* Munculkan saat hover pada baris */
+table tbody tr:hover .action-buttons-inline {
+  opacity: 1;
+  visibility: visible;
+}
+
+.action-buttons-inline button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  transition: color 0.2s ease;
+}
+
+.action-buttons-inline button:hover {
+  color: #0dcaf0;
+}
+
+.action-buttons-inline i {
+  pointer-events: none;
+}

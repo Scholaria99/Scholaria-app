@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      color: #ffffff;
+    }
+
+    .back-button:hover {
+      color: #ffffff !important;
+    }
+
+    /* GANTI VIDEO DENGAN GAMBAR LATAR */
+    .bg-video-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('../assets/img/luca-bravo-3Z70SDuYs5g-unsplash.jpg');
+      /* GANTI DENGAN FILE GAMBAR YANG KAMU PUNYA */
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+    }
+
+    /* KARTU LOGIN TRANSPARAN */
+    .login-card {
+      background: rgba(255, 255, 255, 0.15) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      color: #fff;
+    }
+
+
+    .login-card input::placeholder {
+      color: #f0f0f0;
+    }
+
+    .login-card .form-label,
+    .login-card label,
+    .login-card a,
+    .login-card p,
+    .login-card h2 {
+      color: #ffffff;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    }
+
+    .login-card input.form-control {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+    }
+
+
+    .login-card h2,
+    .login-card label,
+    .login-card a,
+    .login-card p {
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    }
+
+    .login-card label {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      background: rgba(255, 255, 255, 0.1);
+      /* transparan */
+      border: none;
+      border-bottom: 2px solid #00bfff;
+      /* garis bawah saja */
+      color: #fff;
+      font-size: 16px;
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      /* efek blur di belakang input */
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-box input[type="text"]::placeholder,
+    .login-box input[type="password"]::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .login-box input[type="text"]:focus,
+    .login-box input[type="password"]:focus {
+      outline: none;
+      border-bottom: 2px solid #00ffff;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* LOGIN BOX */
+    .login-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+      color: #fff;
+      /* Semua teks di box jadi putih */
+    }
+
+    /* JUDUL LIFEPLAN TETAP HITAM */
+    .login-card h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      color: #111 !important;
+      text-shadow: none;
+      margin-bottom: 1.5rem;
+    }
+
+    /* LABEL INPUT PUTIH DAN RATA KIRI */
+    .form-label {
+      color: #fff !important;
+      text-align: left;
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* FIELD TANPA BORDER */
+    .form-control {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .form-control::placeholder {
+      color: #ccc;
+    }
+
+    .form-control:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* LINK PUTIH */
+    a {
+      color: #fff !important;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* TOMBOL LOGIN */
+    .btn-dark {
+      background-color: #111;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .btn-dark:hover {
+      background-color: #333;
+    }
+
+    /* Teks "Or log in using social media" */
+    .social-login-text {
+      color: #fff;
+      text-align: center;
+      margin: 20px 0 10px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .form-outline .form-control:focus~.form-label,
+    .form-outline .form-control:valid~.form-label {
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
+
+    .form-outline .form-label {
+      border: none !important;
+      box-shadow: none !important;
+      color: white !important;
+      /* Biar label tetap putih */
+    }
+
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+      display: none;
+    }
+
+    input[type="password"]::-webkit-credentials-auto-fill-button {
+      display: none !important;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.7);
+      z-index: 2;
+      font-size: 1.1rem;
+    }
+
+    .toggle-password:hover {
+      color: #a0a0a0;
+    }
+
+    .btn-login {
+      font-size: 0.8rem;
+      padding: 10;
+      border-radius: 8px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Gambar Latar -->
+  <div class="bg-video-wrapper"></div>
+
+  <!-- Login Content -->
+  <div class="mask d-flex align-items-center justify-content-center h-100">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4" style="position: relative;">
+
+
+          <div class="login-card text-center p-4 rounded">
+            <!-- Judul -->
+            <h2 class="mb-4 fw-bold">Scholaria</h2>
+
+            <form>
+              <div class="form-group mb-4">
+                <label for="loginEmail" class="form-label">Username / Email</label>
+                <input type="text" id="loginEmail" class="form-control" required />
+              </div>
+
+              <div class="form-group mb-4 position-relative">
+                <label for="loginPassword" class="form-label">Password</label>
+
+                <div class="position-relative">
+                  <input type="password" id="loginPassword" class="form-control pe-5" required autocomplete="off" />
+                  <span class="toggle-password" id="togglePassword">
+                    <i class="fas fa-eye"></i>
+                  </span>
+                </div>
+
+                <button type="submit" class="btn btn-dark btn-login w-100">LOG IN</button>
+
+
+                <div class="d-flex justify-content-between mb-3">
+                  <a href="forgot-password.html">Forgot Password?</a>
+                  <a href="register.html">Register Now</a>
+                </div>
+
+
+
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="../index.html" id="backButton" class="back-button">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali
+                  </a>
+
+                </div>
+
+            </form>
+          </div>
+          <!-- LOGIN CARD END -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+  <script>
+   document.querySelector("form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      try {
+        const res = await fetch("http://localhost:3001/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          // Simpan data login
+          localStorage.setItem("userId", data.userId);
+          localStorage.setItem("username", data.username);
+
+          alert("Login berhasil!");
+          window.location.href = "../index.html"; // arahkan ke halaman utama
+        } else {
+          alert("Login gagal: " + data.error);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Terjadi kesalahan saat login.");
+      }
+    });
+
+
+    const backButton = document.getElementById("backButton");
+
+  document.addEventListener("mousemove", function (e) {
+    const rect = backButton.getBoundingClientRect();
+
+    // Jika kursor berada dalam area tombol kembali
+    if (
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom
+    ) {
+      backButton.style.opacity = "1";
+    } else {
+      backButton.style.opacity = "0.4";
+    }
+  });
+
+
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("loginPassword");
+
+    togglePassword.addEventListener("click", function () {
+      const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+      passwordField.setAttribute("type", type);
+      this.innerHTML = type === "password"
+        ? '<i class="fas fa-eye"></i>'
+        : '<i class="fas fa-eye-slash"></i>';
+    });
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

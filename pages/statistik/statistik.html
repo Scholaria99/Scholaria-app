@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistik Mingguan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="../../index.html">Beranda</a>
+    </div>
+    <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
+    <div class="navbar-menu" id="navbarMenu">
+      <a href="../akademik/akademik.html">Akademik</a>
+      <a href="../statistik/statistik.html">Statistik</a>
+      <div class="user-dropdown" id="userDropdown">
+        <span id="navbarUsername" class="dropdown-toggle">
+          <i class="fas fa-user-circle"></i> <span id="usernameText">Username</span>
+        </span>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <button onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Statistik Nilai per Minggu</h1>
+
+  <label for="mingguSelect">Pilih Minggu:</label>
+  <select id="mingguSelect"></select>
+  <button id="historyBtn" style="margin-left: 10px;">Lihat History Bulanan</button>
+  <button id="backBtn" style="display: none; margin-left: 10px;">Kembali ke Mingguan</button>
+  <select id="bulanSelect" style="display: none; margin-left: 10px;"></select>
+  
+  <div id="chartContainer">
+    <canvas id="mingguChart"></canvas>
+  </div>
+
+  <div id="saranMinggu"></div>
+
+ 
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/noumanqamar450/alertbox@main/version/1.0.2/alertbox.min.js"></script>
+</body>
+</html>

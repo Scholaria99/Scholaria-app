@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perencanaan Akademik</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-brand"> <!-- Optional: bisa pakai logo atau nama -->
+    <a href="../../index.html">Beranda</a>
+  </div>
+
+  <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="navbar-menu" id="navbarMenu">
+    <a href="akademik.html">Akademik</a>
+    <a href="../statistik/statistik.html">Statistik</a>
+    <div class="user-dropdown" id="userDropdown">
+  <span id="navbarUsername" class="dropdown-toggle">
+    <i class="fas fa-user-circle"></i> <span id="usernameText">Username</span>
+  </span>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <button onclick="logout()">
+  <i class="fas fa-sign-out-alt"></i> Logout
+</button>
+  </div>
+</div>
+</nav>
+
+
+<div class="akademik-wrapper">
+  <header class="akademik-header">
+    <i class="fas fa-graduation-cap fa-3x"></i>
+    <div>
+      <h1>Form Jadwal Kuliah</h1>
+      <p class="intro-text">Atur jadwal kuliahmu dengan mudah dan pantau quiz mingguan secara otomatis.</p>
+    </div>
+  </header>
+
+  <div class="tombol-jadwal-wrapper">
+  <button id="openJadwalModal">Isi Jadwal</button>
+</div>
+
+
+
+<!-- Modal Form (awalnya tersembunyi) -->
+<div id="jadwalModal" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Form Jadwal Kuliah</h2>
+    <form id="jadwalForm">
+      <label>Hari:
+        <select name="hari">
+          <option>Senin</option>
+          <option>Selasa</option>
+          <option>Rabu</option>
+          <option>Kamis</option>
+          <option>Jumat</option>
+          <option>Sabtu</option>
+          <option>Minggu</option>
+        </select>
+      </label><br>
+      <label>Jam Mulai: <input type="time" id="jam_mulai" name="jam_mulai" required></label><br>
+      <label>Jam Selesai: <input type="time" id="jam_selesai" name="jam_selesai" required></label><br>
+      <label>Mata Kuliah: <input type="text" name="matkul" required></label><br>
+      <div style="text-align: right; margin-top: 10px;">
+        <button type="submit">Simpan</button>
+        <button type="button" id="closeJadwalModal" style="background-color: #aaa;">Batal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div id="response"></div>
+
+<h2 id="jadwalHeading">Daftar Jadwal Kuliah</h2>
+<table border="1" id="tabelJadwal">
+  <thead>
+    <tr>
+      <th>Hari</th>
+      <th>Jam Mulai</th>
+      <th>Jam Selesai</th>
+      <th>Mata Kuliah</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<h2 id="quizHeading">Quiz</h2>
+<div id="quizFormContainer"></div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/noumanqamar450/alertbox@main/version/1.0.2/alertbox.min.js"></script>
+</body>
+</html>
