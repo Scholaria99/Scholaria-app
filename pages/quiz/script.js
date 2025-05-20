@@ -4,7 +4,7 @@ async function syncAwalKuis() {
   if (!userId) return;
 
   try {
-    const res = await fetch(`http://localhost:3001/awal-kuis?userId=${userId}`);
+    const res = await fetch('https://scholaria-backend.onrender.com/awal-kuis?userId=${userId}`);
     const data = await res.json();
     if (data.awal_kuis) {
       localStorage.setItem("awalKuis", new Date(data.awal_kuis).toISOString());
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   `;
 
   try {
-    const res = await fetch('http://localhost:3001/generate-soal', {
+    const res = await fetch('https://scholaria-backend.onrender.com/generate-soal', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ materi: topik })
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (kesalahan.length > 0) {
       document.getElementById('saranBelajar').innerHTML = "<p><em>Memuat saran belajar berdasarkan kesalahan kamu...</em></p>";
-      fetch('http://localhost:3001/analisis-kesalahan', {
+      fetch('https://scholaria-backend.onrender.com/analisis-kesalahan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topik, kesalahan })
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log("📅 waktu quiz:", waktuSekarang);
   console.log("✅ mingguKe:", mingguKe, "bulanKe:", bulanKe);
 
-  fetch('http://localhost:3001/simpan-nilai', {
+  fetch('https://scholaria-backend.onrender.com/simpan-nilai', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
