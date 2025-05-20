@@ -307,7 +307,7 @@
       const password = document.getElementById("password").value;
 
       try {
-        const res = await fetch("http://localhost:3001/register", {
+        const res = await fetch('https://scholaria-backend.onrender.com/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password, email })
@@ -318,7 +318,7 @@
         if (res.ok) {
           alert("Registrasi berhasil! Login otomatis...");
 
-          const loginRes = await fetch("http://localhost:3001/login", {
+          const loginRes = await fetch('https://scholaria-backend.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
