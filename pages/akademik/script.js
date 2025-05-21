@@ -309,7 +309,7 @@ if (!adaQuiz) {
     const okBtn = document.querySelector(".alert-btn"); // tombol OK
     if (okBtn) {
       okBtn.addEventListener("click", () => {
-        window.location.href = "../../login.html";
+        window.location.href = "../../loginregister/login.html";
       });
     }
  
