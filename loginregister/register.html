@@ -336,9 +336,7 @@
           if (loginRes.ok) {
             localStorage.setItem("userId", loginData.userId);
             localStorage.setItem("username", loginData.username);
-          } else {
-            alert("Gagal login otomatis: " + loginData.error);
-          }
+          } 
         } else {
           alert("Gagal registrasi: " + data.error);
         }
