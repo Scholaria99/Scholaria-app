@@ -337,9 +337,7 @@
             localStorage.setItem("userId", loginData.userId);
             localStorage.setItem("username", loginData.username);
           } 
-        } else {
-          alert("Gagal registrasi: " + data.error);
-        }
+        } 
       } catch (err) {
         console.error("Error:", err);
         alert("Terjadi kesalahan saat registrasi.");
