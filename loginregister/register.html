@@ -321,7 +321,13 @@
         const data = await res.json();
 
    if (res.ok) {
-          alert("Registrasi berhasil! Login otomatis...");
+          alertbox.render({
+  alertIcon: 'success',
+  title: 'Registrasi Berhasil!',
+  message: 'Cek Email Anda untuk Verifikasi Akun Anda',
+  btnTitle: 'Ok',
+  border:true
+});
 
           const loginRes = await fetch("https://scholaria-backend.onrender.com/login", {
             method: "POST",
@@ -329,9 +335,13 @@
             body: JSON.stringify({ username, password })
           }
           
-        );window.location.href = "verify.html";
+        );const okBtn = document.querySelector(".alert-btn"); // tombol OK
+    if (okBtn) {
+      okBtn.addEventListener("click", () => {
+        window.location.href = "verify.html";
+      });
+    }
         
-          const loginData = await loginRes.json();
 
           if (loginRes.ok) {
             localStorage.setItem("userId", loginData.userId);
@@ -357,6 +367,7 @@
 
 
   </script>
+<script src="https://cdn.jsdelivr.net/gh/noumanqamar450/alertbox@main/version/1.0.2/alertbox.min.js"></script>
 </body>
 
 </html>
