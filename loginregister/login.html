@@ -321,13 +321,7 @@
           localStorage.setItem("userId", data.userId);
           localStorage.setItem("username", data.username);
 
-          alertbox.render({
-  alertIcon: 'success',
-  title: 'Sampai jumpa kembali!',
-  message: 'Anda telah logout',
-  btnTitle: 'Ok',
-  border:true
-});
+          alert("Login berhasil!");
           window.location.href = "../index.html"; // arahkan ke halaman utama
         } else {
           alert("Login gagal: " + data.error);
