@@ -321,8 +321,19 @@
           localStorage.setItem("userId", data.userId);
           localStorage.setItem("username", data.username);
 
-          alert("Login berhasil!");
-          window.location.href = "../index.html"; // arahkan ke halaman utama
+          alertbox.render({
+  alertIcon: 'success',
+  title: 'Login Berhasil!',
+  message: 'Enjoy and Fun',
+  btnTitle: 'Ok',
+  border:true
+});
+         const okBtn = document.querySelector(".alert-btn"); // tombol OK
+    if (okBtn) {
+      okBtn.addEventListener("click", () => {
+        window.location.href = "../index.html";
+      });
+    } // arahkan ke halaman utama
         } else {
           alert("Login gagal: " + data.error);
         }
