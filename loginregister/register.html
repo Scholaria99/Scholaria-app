@@ -341,16 +341,17 @@
         window.location.href = "verify.html";
       });
     }
-        
-
-          if (loginRes.ok) {
-            localStorage.setItem("userId", loginData.userId);
-            localStorage.setItem("username", loginData.username);
-          } 
+     
         } 
       } catch (err) {
         console.error("Error:", err);
-        alert("Terjadi kesalahan saat registrasi.");
+      alertbox.render({
+  alertIcon: 'error',
+  title: 'Registrasi gagal!',
+  message: data.errror,
+  btnTitle: 'Ok',
+  border:true
+});
       }
     });
     
