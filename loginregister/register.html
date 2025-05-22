@@ -341,13 +341,21 @@
         window.location.href = "verify.html";
       });
     }
-       }
+       } else {
+         alertbox.render({
+  alertIcon: 'error',
+  title: 'Gagal registrasi!',
+  message: data.error,
+  btnTitle: 'Ok',
+  border:true
+});
+        }
       } catch (err) {
         console.error("Error:", err);
-      alertbox.render({
+        alertbox.render({
   alertIcon: 'error',
-  title: 'Registrasi gagal!',
-  message: 'Terjadi Kesalahan saat Registrasi',
+  title: 'Gagal registrasi!',
+  message: 'Terjadi Kesalahan Saat registrasi',
   btnTitle: 'Ok',
   border:true
 });
