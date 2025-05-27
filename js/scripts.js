@@ -143,3 +143,21 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 });
+
+
+// Proteksi akses ke halaman fitur
+document.addEventListener("DOMContentLoaded", () => {
+    const username = localStorage.getItem("username");
+
+    const featureButtons = document.querySelectorAll(".btn-feature-protected, .link-feature-protected");
+
+    featureButtons.forEach(button => {
+        button.addEventListener("click", function (event) {
+            if (!username) {
+                event.preventDefault();
+                alert("Silakan login terlebih dahulu untuk mengakses fitur ini.");
+            }
+        });
+    });
+});
+
