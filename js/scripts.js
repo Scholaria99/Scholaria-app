@@ -106,64 +106,42 @@ function type() {
 
 type(); // mulai animasi
 
-document.addEventListener("DOMContentLoaded", () => {
-  const userId = localStorage.getItem("userId");
-  const username = localStorage.getItem("username");
-  const authButton = document.getElementById("auth-button");
+document.addEventListener('DOMContentLoaded', () => {
+    const authButton = document.getElementById('auth-button');
 
-  if (userId && username && authButton) {
-    authButton.innerHTML = `
-      <div class="dropdown">
-        <a class="btn btn-primary dropdown-toggle text-uppercase" href="#" id="navbarUsername" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user-circle me-1"></i> <span id="usernameText">${username}</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" id="dropdownMenu">
-          <li><a class="dropdown-item" href="#" id="btnLogout">Logout</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="#" id="btnDeleteAccount">Hapus Akun</a></li>
-        </ul>
-      </div>
-    `;
+    // Ambil data user dari localStorage
+    const username = localStorage.getItem('username');
 
-    document.getElementById("btnLogout").addEventListener("click", () => logout());
+    if (username) {
+        authButton.innerHTML = `
+            <div class="dropdown">
+                <a class="btn btn-primary dropdown-toggle text-uppercase" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-user-circle me-1"></i> ${username}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#" id="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        `;
 
-    document.getElementById("btnDeleteAccount").addEventListener("click", async () => {
-      const konfirmasi = confirm("Yakin ingin menghapus akunmu secara permanen?");
-      if (!konfirmasi) return;
+        const nav = document.getElementById("userDropdown");
+        nav.style.background = "none";
 
-      try {
-        const res = await fetch(`https://scholaria-backend.onrender.com/hapus-akun/${userId}`, {
-          method: "DELETE"
-        });
-        const data = await res.json();
-
-        alertbox.render({
-          alertIcon: 'success',
-          title: 'Akun Terhapus',
-          message: data.message || 'Akun berhasil dihapus',
-          btnTitle: 'OK',
-          border: true
+        // Logout handler
+        const logoutBtn = document.getElementById('logout-btn');
+        logoutBtn.addEventListener('click', () => {
+            localStorage.clear();
+            location.reload();
         });
 
-        localStorage.clear();
+        
 
-        const okBtn = document.querySelector(".alert-btn");
-        if (okBtn) {
-          okBtn.addEventListener("click", () => {
-            window.location.href = "./loginregister/login.html";
-          });
-        }
-      } catch (err) {
-        console.error("❌ Gagal hapus akun:", err);
-        alert("Terjadi kesalahan saat menghapus akun.");
-      }
-    });
-  } else {
-    // Jika belum login
-    authButton.innerHTML = `
-      <a class="btn btn-login ms-3 text-uppercase" href="./loginregister/login.html">Login/Register</a>
-    `;
-  }
+    } else {
+        // Jika belum login
+        authButton.innerHTML = `
+            <a class="btn btn-login ms-3 text-uppercase" href="./loginregister/login.html">Login/Register</a>
+        `;
+    }
 });
 
 
