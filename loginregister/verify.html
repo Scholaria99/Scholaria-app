@@ -157,13 +157,38 @@
   });
 
   const result = await res.json();
-  if (res.ok) {
-    alert(result.message);
-    window.location.href = 'login.html';
-  } else {
-    alert(result.error);
-  }
-});
+ if (res.ok) {
+  // tampilkan alert custom manual
+  alertbox.render({
+    alertIcon: 'success',
+    title: 'Verifikasi Berhasil!',
+    message: 'Akun kamu berhasil diverifikasi. Silakan login.',
+    btnTitle: 'OK',
+    border: true
+  });
+
+  // redirect setelah klik tombol OK
+  const interval = setInterval(() => {
+    const okBtn = document.querySelector(".alert-btn");
+    if (okBtn) {
+      clearInterval(interval);
+      okBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+    }
+  }, 100);
+
+} else {
+  alertbox.render({
+    alertIcon: 'error',
+    title: 'Verifikasi gagal!',
+    message: 'Akun kamu gagal diverifikasi. Silakan coba lagi.',
+    btnTitle: 'OK',
+    border: true
+  });
+  console.error("Gagal verifikasi:", result.error);
+}
+
 
   const backButton = document.getElementById("backButton");
   document.addEventListener("mousemove", function (e) {
@@ -174,6 +199,6 @@
         ? "1" : "0.4";
   });
 </script>
-
+<script src="https://cdn.jsdelivr.net/gh/noumanqamar450/alertbox@main/version/1.0.2/alertbox.min.js"></script>
 </body>
 </html>
