@@ -145,7 +145,7 @@ deleteBtn.addEventListener('click', async () => {
     if (!userId) return alert("User ID tidak ditemukan.");
 
     try {
-        const response = await fetch(`https://scholaria-app-mu.vercel.app/hapus-akun/${userId}`, {
+        const res = await fetch(`https://scholaria-backend.onrender.com/hapus-akun/${userId}`, {
             method: 'DELETE'
         });
         const data = await response.json();
