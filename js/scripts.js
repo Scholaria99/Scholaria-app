@@ -155,7 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", function (event) {
             if (!username) {
                 event.preventDefault();
-                alert("Silakan login terlebih dahulu untuk mengakses fitur ini.");
+                alertbox.render({
+  alertIcon: 'info',
+  title: 'Tidak dapat mengakses Fitur ini.',
+  message: 'Silakan login terlebih dahulu untuk mengakses fitur ini.',
+  btnTitle: 'Ok',
+  border:true
+});
             }
         });
     });
