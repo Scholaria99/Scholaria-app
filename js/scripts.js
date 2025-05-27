@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="#" id="logout-btn">Logout</a></li>
+                    <li><a class="dropdown-item text-danger" href="#" id="delete-account-btn">Hapus Akun</a></li>
                 </ul>
             </div>
         `;
@@ -134,7 +135,32 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         });
 
-        
+        // Hapus akun handler
+const deleteBtn = document.getElementById('delete-account-btn');
+deleteBtn.addEventListener('click', async () => {
+    const konfirmasi = confirm("Apakah kamu yakin ingin menghapus akunmu? Semua data akan hilang.");
+    if (!konfirmasi) return;
+
+    const userId = localStorage.getItem('userId'); // pastikan disimpan saat login
+    if (!userId) return alert("User ID tidak ditemukan.");
+
+    try {
+        const response = await fetch(`https://scholaria-app-mu.vercel.app/hapus-akun/${userId}`, {
+            method: 'DELETE'
+        });
+        const data = await response.json();
+        if (response.ok) {
+            alert("Akun berhasil dihapus.");
+            localStorage.clear();
+            location.reload();
+        } else {
+            alert("Gagal menghapus akun: " + data.error);
+        }
+    } catch (err) {
+        alert("Terjadi kesalahan saat menghapus akun.");
+        console.error(err);
+    }
+});
 
     } else {
         // Jika belum login
