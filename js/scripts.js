@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteAccountBtn.addEventListener('click', () => {
     if (confirm('Apakah kamu yakin ingin menghapus akunmu? Tindakan ini tidak dapat dibatalkan.')) {
         const username = localStorage.getItem('username');
-        fetch(`https://scholaria-app-mu.vercel.app/hapus-akun?username=${username}`, {
+        fetch(`https://scholaria-backend.onrender.com/hapus-akun?username=${username}`, {
     method: 'DELETE'
 })
 .then(async res => {
