@@ -134,11 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.clear();
             location.reload();
         });
-
-    }
-});
-
-
+        
     } else {
         // Jika belum login
         authButton.innerHTML = `
