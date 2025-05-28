@@ -51,6 +51,13 @@
   cursor: pointer;
 }
 
+.navbar a:hover,
+.navbar button:hover {
+  color: #0dcaf0;
+  transform: scale(1.05);
+  border-radius: 6px;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .navbar-menu {
