@@ -141,18 +141,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (confirm('Apakah kamu yakin ingin menghapus akunmu? Tindakan ini tidak dapat dibatalkan.')) {
         const username = localStorage.getItem('username');
         fetch(`https://scholaria-app-mu.vercel.app/hapus-akun?username=${username}`, {
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => {
-            alert(data.message || 'Akun berhasil dihapus.');
-            localStorage.clear();
-            location.reload();
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Gagal menghapus akun. Coba lagi nanti.');
-        });
+    method: 'DELETE'
+})
+.then(async res => {
+    const text = await res.text();
+    try {
+        const json = JSON.parse(text);
+        alert(json.message || 'Akun berhasil dihapus.');
+    } catch {
+        alert('Gagal hapus akun: ' + text);
+    }
+    localStorage.clear();
+    location.reload();
+})
+.catch(err => {
+    console.error(err);
+    alert('Gagal menghapus akun. Coba lagi nanti.');
+});
+
     }
 });
 
