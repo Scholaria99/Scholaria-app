@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>
                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
     <li><a class="dropdown-item" href="#" id="logout-btn">Logout</a></li>
-    <li><a class="dropdown-item text-danger" href="#" id="delete-account-btn">Hapus Akun</a></li>
 </ul>
 
             </div>
@@ -135,29 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.clear();
             location.reload();
         });
-
-        const deleteAccountBtn = document.getElementById('delete-account-btn');
-        deleteAccountBtn.addEventListener('click', () => {
-    if (confirm('Apakah kamu yakin ingin menghapus akunmu? Tindakan ini tidak dapat dibatalkan.')) {
-        const username = localStorage.getItem('username');
-       fetch(`https://scholaria-backend.onrender.com/hapus-akun?username=${username}`, {
-    method: 'DELETE'
-})
-.then(async res => {
-    const text = await res.text();
-    try {
-        const json = JSON.parse(text);
-        alert(json.message || 'Akun berhasil dihapus.');
-    } catch {
-        alert('Gagal hapus akun: ' + text);
-    }
-    localStorage.clear();
-    location.reload();
-})
-.catch(err => {
-    console.error(err);
-    alert('Gagal menghapus akun. Coba lagi nanti.');
-});
 
     }
 });
