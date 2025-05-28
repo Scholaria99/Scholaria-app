@@ -118,9 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a class="btn btn-primary dropdown-toggle text-uppercase" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                     <i class="fas fa-user-circle me-1"></i> ${username}
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="#" id="logout-btn">Logout</a></li>
-                </ul>
+               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+    <li><a class="dropdown-item" href="#" id="logout-btn">Logout</a></li>
+    <li><a class="dropdown-item text-danger" href="#" id="delete-account-btn">Hapus Akun</a></li>
+</ul>
+
             </div>
         `;
 
@@ -134,7 +136,26 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         });
 
-        
+        const deleteAccountBtn = document.getElementById('delete-account-btn');
+        deleteAccountBtn.addEventListener('click', () => {
+    if (confirm('Apakah kamu yakin ingin menghapus akunmu? Tindakan ini tidak dapat dibatalkan.')) {
+        const username = localStorage.getItem('username');
+        fetch(`https://scholaria-app-mu.vercel.app/hapus-akun?username=${username}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert(data.message || 'Akun berhasil dihapus.');
+            localStorage.clear();
+            location.reload();
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Gagal menghapus akun. Coba lagi nanti.');
+        });
+    }
+});
+
 
     } else {
         // Jika belum login
