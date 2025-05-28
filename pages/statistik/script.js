@@ -1,6 +1,11 @@
 let allData = [];
 let chart;
 
+ function toggleMenu() {
+    const menu = document.getElementById("navbarMenu");
+    menu.classList.toggle("show");
+  }
+
 async function fetchStatistikMingguan() {
   const userId = localStorage.getItem("userId");
   const res = await fetch(`https://scholaria-backend.onrender.com/statistik-mingguan?userId=${userId}`);
